@@ -16,7 +16,7 @@ public class ArticleTests extends CoreTestCase {
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Dracula");
-        SearchPageObject.clickByArticleWithSubstring("Dracula in popular culture");
+        SearchPageObject.clickByArticleWithSubstring("racula in popular culture");
 
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
         String article_title = ArticlePageObject.getArticleTitle();

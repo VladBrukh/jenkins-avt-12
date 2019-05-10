@@ -1,9 +1,9 @@
+tests/LessonSevenTests.class
 tests/ArticleTests.class
 suites/TestSuite.class
 lib/ui/NavigationUI.class
 tests/SearchTests.class
 lib/ui/anroid/AndroidNavigationUI.class
-tests/LessonSixTests.class
 lib/ui/ArticlePageObject.class
 lib/ui/SearchPageObject.class
 lib/ui/WelcomePageObject.class

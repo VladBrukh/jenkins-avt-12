@@ -9,7 +9,7 @@ import lib.ui.factories.NavigationUIFactory;
 import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 
-public class LessonSixTests extends CoreTestCase {
+public class LessonSevenTests extends CoreTestCase {
 
     @Test
     public void testSearchTwoArticleAndCancelSearch() {
@@ -29,6 +29,10 @@ public class LessonSixTests extends CoreTestCase {
     }
 
     private static final String name_of_folder = "Dracula folder";
+    private static final String
+            login = "VladBrukh",
+            password = "gorbag669";
+
     @Test
     public void testSavingTwoArticlesToMyLists() {
 
@@ -36,7 +40,7 @@ public class LessonSixTests extends CoreTestCase {
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Dracula");
-        SearchPageObject.clickByArticleWithSubstring("Dracula in popular culture");
+        SearchPageObject.clickByArticleWithSubstring("racula in popular culture");
 
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
         ArticlePageObject.waitForTitleElement();
@@ -48,15 +52,32 @@ public class LessonSixTests extends CoreTestCase {
             ArticlePageObject.addArticlesToMySaved();
         }
 
+        if(Platform.getInstance().isMw()) {
+            AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
+            Auth.clickAuthButton();
+            Auth.enterLoginData(login, password);
+            Auth.submitForm();
+
+            ArticlePageObject.waitForTitleElement();
+
+            assertEquals(
+                    "We are not on the same page after log in",
+                    first_article_title,
+                    ArticlePageObject.getArticleTitle()
+            );
+
+            ArticlePageObject.addArticlesToMySaved();
+        }
+
         ArticlePageObject.closeArticle();
 
         SearchPageObject.initSearchInput();
 
-        if(Platform.getInstance().isAndroid()) {
+        if(Platform.getInstance().isAndroid() || Platform.getInstance().isMw()) {
             SearchPageObject.typeSearchLine("Dracula");
         }
 
-        SearchPageObject.clickByArticleWithSubstring("Dracula Untold");
+        SearchPageObject.clickByArticleWithSubstring("racula Untold");
 
         MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
 
@@ -72,6 +93,7 @@ public class LessonSixTests extends CoreTestCase {
         ArticlePageObject.closeArticle();
 
         NavigationUI NavigationUI = NavigationUIFactory.get(driver);
+        NavigationUI.openNavigation();
         NavigationUI.clickMyLists();
 
         if (Platform.getInstance().isAndroid()) {

@@ -14,8 +14,7 @@ public class SearchTests extends CoreTestCase {
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Dracula");
-        SearchPageObject.waitForSearchResult("Dracula in popular culture");
-
+        SearchPageObject.waitForSearchResult("racula in popular culture");
     }
 
     @Test
@@ -27,7 +26,6 @@ public class SearchTests extends CoreTestCase {
         SearchPageObject.waitForCancelButtonToAppear();
         SearchPageObject.clickCancelButton();
         SearchPageObject.waitForCancelButtonToDisappear();
-
     }
 
     @Test
